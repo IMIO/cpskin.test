@@ -1,0 +1,7 @@
+version: '3'
+services:
+  test:
+    image: docker-staging.imio.be/cpskin.test:latest 
+    working_dir: /var/lib/jenkins/jobs/cpskin.core/workspace
+    volumes:
+    - .:/var/lib/jenkins/jobs/cpskin.core/workspace
