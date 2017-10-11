@@ -12,6 +12,7 @@ RUN \
 WORKDIR /home/imio
 RUN git clone https://github.com/IMIO/buildout.website.git
 WORKDIR /home/imio/buildout.website
+COPY test.cfg .
 RUN \
     ln -fs test.cfg buildout.cfg &&\
 	python bootstrap.py &&\
