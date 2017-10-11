@@ -10,11 +10,11 @@ RUN \
 	tar jxvf buildout-cache.tar.bz2 1>/dev/null &&\
 	rm buildout-cache.tar.bz2
 WORKDIR /home/imio
+RUN git clone https://github.com/IMIO/buildout.website.git
+WORKDIR /home/imio/buildout.website
 RUN \
-    git clone https://github.com/IMIO/buildout.website.git
-	cd buildout.website
-	sudo pip zc.buildout setuptools
-	python bin/buildout
-RUN \
-    apt-get autoremove -y &&\
-    apt-get clean
+    ln -fs test.cfg buildout.cfg &&\
+	python bootstrap.py &&\
+	bin/buildout
+WORKDIR /home/imio
+RUN rm -rf buildout.website
