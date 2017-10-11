@@ -18,5 +18,3 @@ RUN \
 	bin/buildout
 WORKDIR /root
 RUN rm -rf buildout.website
-RUN mkdir /root/src
-VOLUME ["/root/src"]
