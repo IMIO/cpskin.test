@@ -19,3 +19,5 @@ RUN \
 	bin/buildout
 WORKDIR /home/imio
 RUN rm -rf buildout.website
+RUN mkdir /home/imio/src
+VOLUME ["/home/imio/src"]
