@@ -10,11 +10,17 @@ RUN \
 	rm buildout-cache.tar.bz2
 WORKDIR /root
 RUN git clone https://github.com/IMIO/buildout.website.git
+RUN git clone https://github.com/IMIO/cpskin.policy.git
 WORKDIR /root/buildout.website
 COPY test.cfg buildout.cfg
 RUN \
 	python bootstrap.py &&\
 	bin/buildout
+WORKDIR /root/cpskin.policy
+RUN \
+	python bootstrap.py buildout:download-cache=/.buildout/buildout-cache/downloads buildout:eggs-directory=/.buildout/buildout-cache/eggs &&\
+	bin/buildout buildout:download-cache=/.buildout/buildout-cache/downloads buildout:eggs-directory=/.buildout/buildout-cache/eggs
 WORKDIR /root
 RUN rm -rf buildout.website
+RUN rm -rf cpskin.policy
 RUN chmod 777 -R /.buildout
