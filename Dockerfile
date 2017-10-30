@@ -1,7 +1,6 @@
 FROM docker-staging.imio.be/base:latest
 RUN apt-get -qy update && apt-get -qy install build-essential python-dev git rsync gcc libxml2-dev libxslt1-dev zlib1g-dev libjpeg-dev lynx
 USER root
-WORKDIR /root
 RUN mkdir -p /.buildout
 WORKDIR /.buildout
 COPY default.cfg .
@@ -12,7 +11,7 @@ RUN \
 WORKDIR /root
 RUN git clone https://github.com/IMIO/buildout.website.git
 WORKDIR /root/buildout.website
-COPY test.cfg .
+COPY test.cfg buildout.cfg
 RUN \
     ln -fs test.cfg buildout.cfg &&\
 	python bootstrap.py &&\
