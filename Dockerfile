@@ -1,8 +1,9 @@
 FROM docker-staging.imio.be/base:latest
 RUN apt-get -qy update && apt-get -qy install build-essential python-dev git rsync gcc libxml2-dev libxslt1-dev zlib1g-dev libjpeg-dev lynx
+USER root
 WORKDIR /root
-RUN mkdir -p .buildout
-WORKDIR /root/.buildout
+RUN mkdir -p /.buildout
+WORKDIR /.buildout
 COPY default.cfg .
 RUN \
 	wget -O  buildout-cache.tar.bz2 http://files.imio.be/website-buildout-cache.tar.bz2 &&\
@@ -18,3 +19,4 @@ RUN \
 	bin/buildout
 WORKDIR /root
 RUN rm -rf buildout.website
+RUN chmod 777 -R /.buildout
