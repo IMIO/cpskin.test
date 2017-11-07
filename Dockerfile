@@ -1,5 +1,5 @@
 FROM docker-staging.imio.be/base:latest
-RUN apt-get -qy update && apt-get -qy install build-essential python-dev python-yaml git rsync gcc libxml2-dev libxslt1-dev zlib1g-dev libjpeg-dev lynx
+RUN apt-get -qy update && apt-get -qy install build-essential python-dev python-yaml git rsync gcc libxml2-dev libxslt1-dev zlib1g-dev libjpeg-dev lynx xvfb firefox
 USER root
 RUN mkdir -p /.buildout
 WORKDIR /.buildout
