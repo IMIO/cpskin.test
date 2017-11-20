@@ -1,4 +1,4 @@
-FROM docker-staging.imio.be/base:latest
+FROM ubuntu:latest
 RUN apt-get -qy update && apt-get -qy install build-essential python-dev python-yaml git rsync gcc libxml2-dev libxslt1-dev zlib1g-dev libjpeg-dev lynx xvfb firefox x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
 USER root
 RUN mkdir -p /.buildout
