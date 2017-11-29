@@ -7,7 +7,6 @@ RUN \
     wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)"; \
 	chmod +x /usr/local/bin/gosu; \
 	gosu nobody true; \
-	apt-get purge -y --auto-remove ca-certificates; \
 	wget -O  buildout-cache.tar.bz2 http://files.imio.be/website-buildout-cache.tar.bz2; \
 	tar jxvf buildout-cache.tar.bz2 1>/dev/null; \
 	rm buildout-cache.tar.bz2
@@ -16,11 +15,11 @@ WORKDIR /root
 RUN git clone https://github.com/IMIO/cpskin.core.git && git clone https://github.com/IMIO/cpskin.policy.git
 WORKDIR /root/cpskin.core
 RUN \
-	python bootstrap.py buildout:download-cache=/buildout-cache/downloads buildout:eggs-directory=/buildout-cache/eggs &&\
+	python bootstrap.py --buildout-version 2.7.0 buildout:download-cache=/buildout-cache/downloads buildout:eggs-directory=/buildout-cache/eggs; \
 	bin/buildout buildout:download-cache=/buildout-cache/downloads buildout:eggs-directory=/buildout-cache/eggs
 WORKDIR /root/cpskin.policy
 RUN \
-	python bootstrap.py buildout:download-cache=/buildout-cache/downloads buildout:eggs-directory=/buildout-cache/eggs &&\
+	python bootstrap.py buildout:download-cache=/buildout-cache/downloads buildout:eggs-directory=/buildout-cache/eggs; \
 	bin/buildout buildout:download-cache=/buildout-cache/downloads buildout:eggs-directory=/buildout-cache/eggs
 WORKDIR /root
 RUN rm -rf cpskin.core cpskin.policy
