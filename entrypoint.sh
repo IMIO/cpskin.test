@@ -10,5 +10,7 @@ USER_NAME=${HOST_USER_NAME:-plone}
 echo "Starting with UID : $USER_ID"
 useradd --shell /bin/bash -u $USER_ID -d $GROUP_ID -o -c "" -m $USER_NAME
 export HOME=/home/$USER_NAME
+mkdir /home/$USER_NAME/.buildout
+mv /buildout-cache/default.cfg /home/$USER_NAME/.buildout/default.cfg 
 
 exec /usr/local/bin/gosu $USER_NAME "$@"
