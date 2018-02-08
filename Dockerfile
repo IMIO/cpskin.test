@@ -40,8 +40,8 @@ RUN \
 RUN git clone https://github.com/IMIO/buildout.website.git
 WORKDIR /home/plone/buildout.website
 RUN \
-	/usr/bin/python bootstrap.py --buildout-version 2.7.0 -c docker.cfg ; \
-	bin/buildout -c docker.cfg
+	/usr/bin/python bootstrap.py --buildout-version 2.7.0 -c prod.cfg ; \
+	bin/buildout -c prod.cfg
 WORKDIR  /home/plone
 RUN rm -rf buildout.website
 
