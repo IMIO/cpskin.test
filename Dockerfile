@@ -2,30 +2,31 @@ FROM ubuntu:latest
 ARG plone_uid=1000
 ENV GOSU_VERSION 1.10
 RUN apt-get -qy update && apt-get -qy install \
+    build-essential \
     ca-certificates \
-	wget \
-	build-essential \
-	python-dev \
-	python-yaml \
-	git \
-	rsync \
-	gcc \
-	libxml2-dev \
-	libxslt1-dev \
+    firefox \
+    gcc \
+    git \
     libffi-dev \
+    libjpeg-dev \
     libssl-dev \
-	zlib1g-dev \
-	libjpeg-dev \
-	lynx \
-	xvfb \
-	firefox \
-	x11vnc \
-	x11-xkb-utils \
-	xfonts-100dpi \
-	xfonts-75dpi \
-	xfonts-scalable \
-	xfonts-cyrillic \
-	x11-apps
+    libxml2-dev \
+    libxslt1-dev \
+    lynx \
+    python-dev \
+    python-yaml \
+    rsync \
+    wget \
+    wv \
+    x11-apps
+    x11-xkb-utils \
+    x11vnc \
+    xfonts-100dpi \
+    xfonts-75dpi \
+    xfonts-cyrillic \
+    xfonts-scalable \
+    xvfb \
+    zlib1g-dev
 RUN useradd --shell /bin/bash -u $plone_uid -o -c "" -m plone
 WORKDIR /home/plone
 USER plone
