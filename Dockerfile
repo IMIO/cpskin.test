@@ -13,6 +13,7 @@ RUN apt-get -qy update && apt-get -qy install \
 	libxml2-dev \
 	libxslt1-dev \
     libffi-dev \
+    libssl-dev \
 	zlib1g-dev \
 	libjpeg-dev \
 	lynx \
