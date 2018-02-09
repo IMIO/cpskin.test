@@ -42,9 +42,10 @@ RUN \
 RUN git clone https://github.com/IMIO/buildout.website.git
 WORKDIR /home/plone/buildout.website
 RUN \
-	/usr/bin/python bootstrap.py --buildout-version 2.7.0 -c prod.cfg \
-	bin/buildout -c prod.cfg \
+	/usr/bin/python bootstrap.py --buildout-version 2.7.0 -c prod.cfg ;\
+	bin/buildout -c prod.cfg ;\
 	bin/buildout -c dev.cfg
+WORKDIR  /home/plone
 RUN rm -rf buildout.website
 
 # GeckoDriver
