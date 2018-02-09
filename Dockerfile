@@ -19,7 +19,7 @@ RUN apt-get -qy update && apt-get -qy install \
     rsync \
     wget \
     wv \
-    x11-apps
+    x11-apps \
     x11-xkb-utils \
     x11vnc \
     xfonts-100dpi \
