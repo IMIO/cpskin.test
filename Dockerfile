@@ -13,6 +13,7 @@ RUN apt-get -qy update && apt-get -qy install \
     libxml2-dev \
     libxslt1-dev \
     lynx \
+    poppler-utils \
     python-dev \
     python-yaml \
     rsync \
