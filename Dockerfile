@@ -44,8 +44,14 @@ WORKDIR /home/plone/buildout.website
 RUN \
 	/usr/bin/python bootstrap.py --buildout-version 2.7.0 -c prod.cfg ; \
 	bin/buildout -c prod.cfg
+
+RUN git clone https://github.com/IMIO/cpskin.core.git
+WORKDIR /home/plone/cpskin.core
+RUN \
+	/usr/bin/python bootstrap.py ; \
+	bin/buildout
 WORKDIR  /home/plone
-RUN rm -rf buildout.website
+RUN rm -rf buildout.website cpskin.core
 
 # GeckoDriver
 USER root
