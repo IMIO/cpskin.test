@@ -1,7 +1,7 @@
 #!/usr/bin/make
 UID := $(shell id -u)
 build:
-	docker build --build-arg plone_uid=1000 -t docker-staging.imio.be/cpskin.test:latest .
+	docker build --force-rm --pull --build-arg plone_uid=1000 -t docker-staging.imio.be/cpskin.test:latest .
 
 jenkins-build:
 	docker build --build-arg plone_uid=110 -t docker-staging.imio.be/cpskin.test:110 .
