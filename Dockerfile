@@ -12,6 +12,7 @@ RUN apt-get -qy update && apt-get -qy install \
 	gcc \
 	libxml2-dev \
 	libxslt1-dev \
+    libffi-dev \
 	zlib1g-dev \
 	libjpeg-dev \
 	lynx \
