@@ -14,7 +14,7 @@ pipeline {
         success {
             sh '''
                 docker push docker-staging.imio.be/cpskin.test
-                docker rmi docker-staging.imio.be/cpskin.test
+                docker rmi $(docker images -q docker-staging.imio.be/cpskin.test)
             '''
         }
     }
