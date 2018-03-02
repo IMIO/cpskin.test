@@ -21,7 +21,7 @@ RUN apt-get -qy update && apt-get -qy install \
     xfonts-cyrillic \
     xfonts-scalable \
     xvfb
-RUN usermod -u $user_id imio && usermod -g $group_id imio && chown $user_id:$group_id -R /home/imio
+RUN usermod -u $user_id imio && chown $user_id:$group_id -R /home/imio
 WORKDIR /home/imio
 USER imio
 RUN git clone https://github.com/IMIO/buildout.website.git
