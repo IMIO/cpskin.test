@@ -1,24 +1,18 @@
-FROM ubuntu:latest
-ARG plone_uid=1000
+FROM docker-staging.imio.be/iasmartweb/cache:latest
+ARG user_uid=1000
+ARG group_id=1000
 ENV GOSU_VERSION 1.10
 RUN apt-get -qy update && apt-get -qy install \
-    build-essential \
     ca-certificates \
     firefox \
     gcc \
     git \
     libffi-dev \
-    libjpeg-dev \
     libssl-dev \
-    libxml2-dev \
-    libxslt1-dev \
-    lynx \
-    poppler-utils \
     python-dev \
     python-yaml \
     rsync \
     wget \
-    wv \
     x11-apps \
     x11-xkb-utils \
     x11vnc \
@@ -26,28 +20,16 @@ RUN apt-get -qy update && apt-get -qy install \
     xfonts-75dpi \
     xfonts-cyrillic \
     xfonts-scalable \
-    xvfb \
-    zlib1g-dev
-RUN useradd --shell /bin/bash -u $plone_uid -o -c "" -m plone
-WORKDIR /home/plone
-USER plone
-RUN export HOME=/home/plone
-RUN mkdir .buildout
-COPY default.cfg .buildout/default.cfg
-RUN \
-	wget -O buildout-cache.tar.bz2 http://files.imio.be/website-buildout-cache.tar.bz2; \
-	tar jxvf buildout-cache.tar.bz2 1>/dev/null; \
-    mv buildout-cache/downloads .buildout/; \
-    mv buildout-cache/eggs .buildout/; \
-	rm buildout-cache.tar.bz2; \
-    rm -rf buildout-cache
+    xvfb
+RUN usermod -u $user_uid imio && groupmod -g $group_id imio && chown $user_uid:$group_id -R /home/imio
+WORKDIR /home/imio
+USER imio
 RUN git clone https://github.com/IMIO/buildout.website.git
-WORKDIR /home/plone/buildout.website
+WORKDIR /home/imio/buildout.website
 RUN \
-	/usr/bin/python bootstrap.py --buildout-version 2.7.0 -c prod.cfg ;\
-	bin/buildout -c prod.cfg ;\
+	/usr/bin/python bootstrap.py -c dev.cfg ;\
 	bin/buildout -c dev.cfg
-WORKDIR  /home/plone
+WORKDIR  /home/imio
 RUN rm -rf buildout.website
 
 # GeckoDriver
