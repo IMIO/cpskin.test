@@ -4,23 +4,27 @@ pipeline {
         pollSCM('*/3 * * * *')
     }
     stages {
-        stage('Build uid 1000') {
-            steps {
-                sh 'make build'
+        stage('Build') {
+            parallel {
+                stage('Build uid 1000') {
+                    steps {
+                        sh 'make build'
+                    }
+                }
+                stage('Build uid 110 (IMIO Jenkins)') {
+                    steps {
+                        sh 'make jenkins-build'
+                    }
+                }
             }
         }
-        stage('Build uid 110 (IMIO Jenkins)') {
+        stage('Push image to registry') {
             steps {
-                sh 'make jenkins-build'
+                sh '''
+                    docker push docker-staging.imio.be/iasmartweb/test
+                    docker rmi $(docker images -q docker-staging.imio.be/iasmartweb/test)
+                '''
             }
-        }
-    }
-    post {
-        success {
-            sh '''
-                docker push docker-staging.imio.be/iasmartweb/test
-                docker rmi $(docker images -q docker-staging.imio.be/iasmartweb/test)
-            '''
         }
     }
 }
