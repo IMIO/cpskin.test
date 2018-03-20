@@ -30,7 +30,7 @@ RUN \
 	/usr/bin/python bootstrap.py -c dev.cfg ;\
 	bin/buildout -c dev.cfg
 WORKDIR  /home/imio
-RUN rm -rf buildout.website
+RUN rm -rf /home/imio/buildout.website
 
 # GeckoDriver
 USER root
