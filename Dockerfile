@@ -10,6 +10,7 @@ RUN apt-get -qy update && apt-get -qy install \
     libffi-dev \
     libssl-dev \
     python-dev \
+    python-pip \
     python-yaml \
     rsync \
     wget \
@@ -21,6 +22,7 @@ RUN apt-get -qy update && apt-get -qy install \
     xfonts-cyrillic \
     xfonts-scalable \
     xvfb
+RUN pip install cryptography
 RUN usermod -u $user_id imio && chown $user_id:$group_id -R /home/imio
 WORKDIR /home/imio
 USER imio
