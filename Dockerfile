@@ -10,7 +10,6 @@ RUN apt-get -qy update && apt-get -qy install \
     libffi-dev \
     libssl-dev \
     python-dev \
-    python-pip \
     python-yaml \
     rsync \
     wget \
@@ -22,7 +21,7 @@ RUN apt-get -qy update && apt-get -qy install \
     xfonts-cyrillic \
     xfonts-scalable \
     xvfb
-RUN pip install --upgrade pip
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py && rm get-pip.py
 RUN usermod -u $user_id imio && chown $user_id:$group_id -R /home/imio
 WORKDIR /home/imio
 USER imio
