@@ -29,7 +29,7 @@ USER imio
 RUN git clone https://github.com/IMIO/buildout.website.git
 WORKDIR /home/imio/buildout.website
 RUN \
-	/usr/bin/python bootstrap.py -c dev.cfg ;\
+    pip install --prefix=. -r https://raw.githubusercontent.com/IMIO/buildout.website/4.3.15.x/requirements.txt ;\
 	bin/buildout -c dev.cfg
 WORKDIR  /home/imio
 RUN rm -rf /home/imio/buildout.website
