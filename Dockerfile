@@ -28,7 +28,7 @@ WORKDIR /home/imio
 USER imio
 RUN git clone https://github.com/IMIO/buildout.website.git
 WORKDIR /home/imio/buildout.website
-RUN pip install -I --user --prefix=. -r https://raw.githubusercontent.com/IMIO/buildout.website/4.3.15.x/requirements.txt \
+RUN pip install -I --prefix=. -r https://raw.githubusercontent.com/IMIO/buildout.website/4.3.15.x/requirements.txt \
  && bin/buildout -c dev.cfg
 WORKDIR  /home/imio
 RUN rm -rf /home/imio/buildout.website
