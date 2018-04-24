@@ -22,7 +22,7 @@ RUN apt-get -qy update && apt-get -qy install \
     xfonts-scalable \
     xvfb
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py && rm get-pip.py
-RUN usermod -u $user_id imio && chown $user_id:$group_id -R /home/imio
+RUN rm -rf /home/imio/.local && rm -rf /home/imio/.cache && usermod -u $user_id imio && chown -R $user_id:$group_id  /home/imio
 WORKDIR /home/imio
 USER imio
 RUN git clone https://github.com/IMIO/buildout.website.git
