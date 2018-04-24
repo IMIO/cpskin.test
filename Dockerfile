@@ -28,7 +28,7 @@ USER imio
 RUN git clone https://github.com/IMIO/buildout.website.git
 WORKDIR /home/imio/buildout.website
 RUN pip install -I --user -r https://raw.githubusercontent.com/IMIO/buildout.website/4.3.15.x/requirements.txt
-RUN ENV PATH="/home/imio/.local/bin:${PATH}"
+ENV PATH="/home/imio/.local/bin:${PATH}"
 RUN buildout -c dev.cfg
 WORKDIR  /home/imio
 RUN rm -rf /home/imio/buildout.website
