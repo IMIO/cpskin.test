@@ -10,6 +10,7 @@ RUN apt-get -qy update && apt-get -qy install \
     libffi-dev \
     libssl-dev \
     python-dev \
+    python-virtualenv \
     python-yaml \
     rsync \
     wget \
