@@ -26,6 +26,9 @@ RUN apt-get -qy update && apt-get -qy install \
     xfonts-cyrillic \
     xfonts-scalable \
     xvfb \
+  && runDeps="poppler-utils wv rsync lynx netcat libxml2 libxslt1.1 libjpeg62 libtiff5 libopenjp2-7" \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends $runDeps \
   && rm -rf /home/imio/.local \
   && rm -rf /home/imio/.cache && usermod -u $user_id imio && groupmod -g $group_id -o imio && chown -R $user_id:$group_id /home/imio \
   && cd /home/imio \
