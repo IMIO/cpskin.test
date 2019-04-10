@@ -1,7 +1,7 @@
 FROM docker-staging.imio.be/iasmartweb/cache:latest
 ARG user_id=1000
 ARG group_id=1000
-ARG GECKODRIVER_VERSION=0.20.1
+ARG GECKODRIVER_VERSION=0.24.0
 # ENV GOSU_VERSION 1.10
 ENV PATH="/home/imio/.local/bin:${PATH}" \
   DISPLAY=:123
