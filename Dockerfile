@@ -34,7 +34,7 @@ RUN apt-get -qy update && apt-get -qy install \
   && cd /home/imio \
   && git clone https://github.com/IMIO/buildout.website.git \
   && cd /home/imio/buildout.website \
-  && pip install -I --user -r https://raw.githubusercontent.com/IMIO/buildout.website/4.3.15.x/requirements.txt \
+  && pip install -I --user -r https://raw.githubusercontent.com/IMIO/buildout.website/4.3.18.x/requirements.txt \
   && buildout -c dev.cfg \
   && cd /home/imio \
   && rm -rf /home/imio/buildout.website /home/imio/.local /home/imio/.cache \
